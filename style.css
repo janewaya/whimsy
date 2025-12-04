@@ -1,0 +1,39 @@
+.container {
+  width: 300px;
+  height: 112px;
+  color: #83c5be;
+  background-color: #83c5be;
+  border-style: solid;
+  border-radius: "5px";
+  border-color: #e29578;
+  flex-direction: row;
+}
+
+.title {
+  font-size: 25px;
+  font-weight: bold;
+  color: #e29578;
+  padding: 5px;
+  text-align: left;
+  margin-top: 2px;
+  text-shadow: 2px 0 #ffddd2, -2px 0 #ffddd2, 0 2px #ffddd2, 0 -2px #ffddd2,
+             1px 1px #ffddd2, -1px -1px #ffddd2, 1px -1px #ffddd2, -1px 1px #ffddd2;
+}
+
+.submitbox {
+  margin: 5px 5px;
+  padding: 8px;
+  background-color: #ffddd2;
+  border-color: #e29578;
+  border-width: 2px;
+  border-radius: 5px;
+}
+
+.submitbutton {
+  margin: 5px 5px;
+  padding: 8px;
+  background-color: #ffddd2;
+  border-color: #e29578;
+  border-width: 2px;
+  border-radius: 5px;
+}

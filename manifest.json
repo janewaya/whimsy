@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Whimsy",
+  "version": "1.0",
+  "author": "Alex Janeway",
+  "description": "A Chrome Extension that creates joy.",
+  "permissions": [
+    "storage",
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/DRAGON.gif",
+        "assets/DRAGON(1).gif",
+        "assets/Heart.gif"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "assets/icon.png",
+      "24": "assets/icon.png",
+      "32": "assets/icon.png"
+    },
+    "default_popup": "popup.html",
+    "default_title": "Whimsy"
+  },
+  "host_permissions": [
+    "<all_urls>"
+  ]
+}
