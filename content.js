@@ -33,11 +33,6 @@ async function startDragon() {
 
         await sleep(waitTime * 60 * 1000);
 
-        let howOften = await getTime();
-        if (getTime == null) {
-            howOften = 60;
-        }
-
     }
 }
 
