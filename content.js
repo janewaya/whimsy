@@ -21,10 +21,13 @@ window.addEventListener("load", startDragon);
 
 // Creates the dragon
 async function startDragon() {
-    let howOften = await getTime();
-    if (getTime == null) {
+    let howOften = 0;
+    
+    if(!(howOften = await getTime())){
         howOften = 60;
     }
+    console.log(howOften);
+
     while (howOften != 0) {
         let nextOccurance = Math.floor(Math.random() * howOften);
         let waitTime = howOften - nextOccurance;
