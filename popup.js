@@ -11,7 +11,7 @@ async function onPress() {
     // Stores the saved value and resets it
     let howOften = Number(submitValue.value);
     submitValue.value = "";
-    if (howOften != NaN) {
+    if (howOften != NaN && howOften >= 0) {
         submitValue.placeholder = "Thank you!";
 
         // Saves the time within memory
@@ -22,7 +22,7 @@ async function onPress() {
         });
 
     } else {
-        submitValue.placeholder = "Please submit a number";
+        submitValue.placeholder = "Please submit a non-negative number";
     }
 }
 

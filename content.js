@@ -6,6 +6,7 @@ const assestsURLMap = {
     "heart": chrome.runtime.getURL("assets/Heart.gif")
 }
 
+let dragonIdCur = 0;
 
 // If the user submits an API key, open the chatbox
 chrome.runtime.onMessage.addListener((req, _sender) => {
@@ -22,10 +23,8 @@ window.addEventListener("load", startDragon);
 // Creates the dragon
 async function startDragon() {
     let howOften = 0;
-    
-    if(!(howOften = await getTime())){
-        howOften = 60;
-    }
+    howOften = await getTime()
+
     console.log(howOften);
 
     while (howOften != 0) {
@@ -42,30 +41,29 @@ async function startDragon() {
 async function dragonFlight() {
 
     let whichDragon = Math.floor(Math.random() * 2);
-    let bounds = window.innerWidth;
     const dragon = document.createElement("img");
-    dragon.id = "dragon";
+    dragon.id = "dragon" + dragonIdCur;
+    dragonIdCur++;
+    dragon.style.cursor = 'grab';
+    dragon.style.zIndex = '50';
+    dragon.style.position = 'absolute';
+    let height = window.innerHeight * 2 / 3;
+    let addHeight = (window.innerHeight - height) / 2;
+    let positionY = Math.floor(Math.random() * height) + addHeight;
+
+    dragon.style.top = positionY + "px";
+    dragon.style.width = 200 + "px";
+    dragon.style.height = 200 + "px";
 
     if (whichDragon == 0) {
         dragon.src = assestsURLMap.other_dragon;
-        dragon.style.cursor = 'pointer';
-        dragon.style.zIndex = '12';
-        dragon.style.position = 'absolute';
 
-
-        let height = screen.height * 2 / 3;
-        let addHeight = (screen.height - height) / 2;
-        let positionY = Math.floor(Math.random() * height) + addHeight;
-
-        dragon.style.top = positionY + "px";
         dragon.style.left = -200 + "px";
-        dragon.style.width = 200 + "px";
-        dragon.style.height = 200 + "px";
-        dragon.addEventListener("click", onPetLeft);
+        dragon.addEventListener("click", () => {onPetLeft(dragon.id)});
 
         document.body.append(dragon);
 
-        while (parseInt(dragon.style.left) <= bounds) {
+        while (parseInt(dragon.style.left) <= window.innerWidth) {
 
             let newY = Math.floor(Math.random() * 3);
 
@@ -84,24 +82,12 @@ async function dragonFlight() {
         };
     } else if (whichDragon == 1) {
         dragon.src = assestsURLMap.dragon;
-        dragon.style.cursor = 'pointer';
-        dragon.style.zIndex = '12';
-        dragon.style.position = 'absolute';
-        dragon.addEventListener("click", onPetRight);
-
-
-        let height = screen.height * 2 / 3;
-        let addHeight = (screen.height - height) / 2;
-        let positionY = Math.floor(Math.random() * height) + addHeight;
-
-        dragon.style.top = positionY + "px";
+        dragon.addEventListener("click", () => {onPetRight(dragon.id)});
         dragon.style.right = -200 + "px";
-        dragon.style.width = 200 + "px";
-        dragon.style.height = 200 + "px";
 
         document.body.append(dragon);
 
-        while (parseInt(dragon.style.right) <= bounds) {
+        while (parseInt(dragon.style.right) <= window.innerWidth) {
 
             let newY = Math.floor(Math.random() * 3);
 
@@ -130,17 +116,22 @@ function sleep(ms) {
 function getTime() {
     return new Promise((resolve, reject) => {
         chrome.storage.sync.get(["howOften"], (results) => {
-            resolve(results["howOften"] || []);
+            resolve(results["howOften"] || 60);
         });
     });
 }
 
-async function onPetLeft() {
+async function onPetLeft(dragonId) {
+    const dragon = document.getElementById(dragonId);
+    dragon.style.cursor = 'grabbing';
+    setTimeout(() => {
+        dragon.style.cursor = 'grab';
+    }, 200);
+
     const heart = document.createElement("img");
     heart.src = assestsURLMap.heart;
-    heart.style.zIndex = '12';
+    heart.style.zIndex = '51';
     heart.style.position = 'absolute';
-    const dragon = document.getElementById("dragon");
 
     heart.style.top = parseInt(dragon.style.top) + 40 + "px";
     heart.style.left = parseInt(dragon.style.left) + 160 + "px";
@@ -161,12 +152,17 @@ async function onPetLeft() {
     heart.remove();
 }
 
-async function onPetRight() {
+async function onPetRight(dragonId) {
+    const dragon = document.getElementById(dragonId);
+    dragon.style.cursor = 'grabbing';
+    setTimeout(() => {
+        dragon.style.cursor = 'grab';
+    }, 200);
+
     const heart = document.createElement("img");
     heart.src = assestsURLMap.heart;
-    heart.style.zIndex = '12';
+    heart.style.zIndex = '51';
     heart.style.position = 'absolute';
-    const dragon = document.getElementById("dragon");
 
     heart.style.top = parseInt(dragon.style.top) + 40 + "px";
     heart.style.right = parseInt(dragon.style.right) + 160 + "px";
