@@ -24,8 +24,20 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "assets/DRAGON.gif",
-        "assets/DRAGON(1).gif",
+        "assets/RE_DRAGON.gif",
+        "assets/RE_DRAGON1.gif",
+        "assets/OG_DRAGON.gif",
+        "assets/OG_DRAGON1.gif",
+        "assets/YE_DRAGON.gif",
+        "assets/YE_DRAGON1.gif",
+        "assets/GR_DRAGON.gif",
+        "assets/GR_DRAGON1.gif",
+        "assets/BL_DRAGON.gif",
+        "assets/BL_DRAGON1.gif",
+        "assets/IN_DRAGON.gif",
+        "assets/IN_DRAGON1.gif",
+        "assets/PU_DRAGON.gif",
+        "assets/PU_DRAGON1.gif",
         "assets/Heart.gif"
       ],
       "matches": [
