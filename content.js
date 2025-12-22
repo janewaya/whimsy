@@ -42,7 +42,7 @@ let dragonIdCur = 0;
 
 // If the user submits an API key, open the chatbox
 chrome.runtime.onMessage.addListener((req, _sender) => {
-    if (req.type = "DRAGON") {
+    if (req.type == "DRAGON") {
         startDragon();
     }
 });
@@ -67,6 +67,7 @@ async function startDragon() {
 
         await sleep(waitTime * 60 * 1000);
 
+        howOften = await getTime();
     }
 }
 

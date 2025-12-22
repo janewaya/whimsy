@@ -11,7 +11,7 @@ async function onPress() {
     // Stores the saved value and resets it
     let howOften = Number(submitValue.value);
     submitValue.value = "";
-    if (howOften != NaN && howOften >= 0) {
+    if (howOften != Number.isNaN && howOften >= 0) {
         submitValue.placeholder = "Thank you!";
 
         // Saves the time within memory
