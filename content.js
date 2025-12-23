@@ -59,7 +59,9 @@ async function startDragon() {
 
     console.log(howOften);
 
-    while (howOften != 0) {
+    const track = howOften;
+
+    while (howOften != 0 && track == howOften) {
         let nextOccurance = Math.floor(Math.random() * howOften);
         let waitTime = howOften - nextOccurance;
 
