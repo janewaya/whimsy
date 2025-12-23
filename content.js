@@ -94,8 +94,6 @@ async function dragonFlight() {
     } else if (whichDragon == 1) {
         flyLeft(dragon, dragonLeftArray[dragonColor]);
     }
-
-    dragon.remove();
 }
 
 async function flyRight(dragon, right) {
@@ -123,6 +121,8 @@ async function flyRight(dragon, right) {
 
         await sleep(100);
     };
+
+    dragon.remove();
 }
 
 async function flyLeft(dragon, left) {
@@ -149,6 +149,8 @@ async function flyLeft(dragon, left) {
 
         await sleep(100);
     };
+
+    dragon.remove();
 }
 
 
