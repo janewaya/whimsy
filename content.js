@@ -92,67 +92,59 @@ async function dragonFlight() {
     dragon.style.height = 200 + "px";
 
     if (whichDragon == 0) {
-        flyRight(dragon, dragonRightArray[dragonColor]);
+        dragon.src = dragonRightArray[dragonColor];
+
+        dragon.style.left = -200 + "px";
+        dragon.addEventListener("click", () => { onPetLeft(dragon.id) });
+
+        document.body.append(dragon);
+
+        while (parseInt(dragon.style.left) <= window.innerWidth) {
+
+            let newY = Math.floor(Math.random() * 3);
+
+            if (newY == 0) {
+                dragon.style.top = parseInt(dragon.style.top) - 3 + "px";
+            } else if (newY == 1) {
+                dragon.style.top = parseInt(dragon.style.top) + 3 + "px";
+            }
+
+            dragon.style.left = parseInt(dragon.style.left) + 2 + "px";
+
+            dragon.remove();
+            document.body.append(dragon);
+
+            await sleep(100);
+        };
     } else if (whichDragon == 1) {
-        flyLeft(dragon, dragonLeftArray[dragonColor]);
+        dragon.src = dragonLeftArray[dragonColor];
+        dragon.addEventListener("click", () => { onPetRight(dragon.id) });
+        dragon.style.right = -200 + "px";
+
+        document.body.append(dragon);
+
+        while (parseInt(dragon.style.right) <= window.innerWidth) {
+
+            let newY = Math.floor(Math.random() * 3);
+
+            if (newY == 0) {
+                dragon.style.top = parseInt(dragon.style.top) - 3 + "px";
+            } else if (newY == 1) {
+                dragon.style.top = parseInt(dragon.style.top) + 3 + "px";
+            }
+
+            dragon.style.right = parseInt(dragon.style.right) + 2 + "px";
+
+            dragon.remove();
+            document.body.append(dragon);
+
+            await sleep(100);
+        };
     }
-}
-
-async function flyRight(dragon, right) {
-    dragon.src = right;
-
-    dragon.style.left = -200 + "px";
-    dragon.addEventListener("click", () => { onPetLeft(dragon.id) });
-
-    document.body.append(dragon);
-
-    while (parseInt(dragon.style.left) <= window.innerWidth) {
-
-        let newY = Math.floor(Math.random() * 3);
-
-        if (newY == 0) {
-            dragon.style.top = parseInt(dragon.style.top) - 3 + "px";
-        } else if (newY == 1) {
-            dragon.style.top = parseInt(dragon.style.top) + 3 + "px";
-        }
-
-        dragon.style.left = parseInt(dragon.style.left) + 2 + "px";
-
-        dragon.remove();
-        document.body.append(dragon);
-
-        await sleep(100);
-    };
 
     dragon.remove();
-}
 
-async function flyLeft(dragon, left) {
-    dragon.src = left;
-    dragon.addEventListener("click", () => { onPetRight(dragon.id) });
-    dragon.style.right = -200 + "px";
-
-    document.body.append(dragon);
-
-    while (parseInt(dragon.style.right) <= window.innerWidth) {
-
-        let newY = Math.floor(Math.random() * 3);
-
-        if (newY == 0) {
-            dragon.style.top = parseInt(dragon.style.top) - 3 + "px";
-        } else if (newY == 1) {
-            dragon.style.top = parseInt(dragon.style.top) + 3 + "px";
-        }
-
-        dragon.style.right = parseInt(dragon.style.right) + 2 + "px";
-
-        dragon.remove();
-        document.body.append(dragon);
-
-        await sleep(100);
-    };
-
-    dragon.remove();
+    return 0;
 }
 
 
